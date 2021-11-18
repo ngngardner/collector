@@ -42,7 +42,7 @@ def log_papers(func):
 class Finder(object):
     """Relevant paper finder class."""
 
-    def __init__(self, seed: str):
+    def __init__(self, seed: str = None):
         """Initialize relevant paper finder.
 
         Args:
@@ -128,13 +128,12 @@ class Finder(object):
         self.papers = res
 
     @beartype
-    def save_papers(self, path: str):
+    def save_papers(self, path: Path):
         """Save papers to file.
 
         Args:
             path: The path to save the papers to.
         """
-        path = Path(path) / 'papers.json'
         path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, 'w') as fout:
+        with open(str(path), 'w') as fout:
             json.dump(self.papers, fout, indent=4, sort_keys=True)
