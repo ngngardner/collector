@@ -3,6 +3,7 @@
 import http
 
 import requests
+from beartype import beartype
 
 from collector.console import console
 
@@ -19,6 +20,7 @@ DEFAULT_FIELDS = ','.join([
 class Client(object):
     """API Client for semanticscholar."""
 
+    @beartype
     def __init__(self, fields: str = DEFAULT_FIELDS):
         """Initialize the client.
 
@@ -28,6 +30,7 @@ class Client(object):
         self.base_url = 'https://api.semanticscholar.org/graph/v1'
         self.fields = fields
 
+    @beartype
     def get_paper(self, paper_id: str) -> dict:
         """Get a paper by its ID.
 
@@ -41,6 +44,7 @@ class Client(object):
         response = requests.get(url, params={'fields': self.fields})
         return response.json()
 
+    @beartype
     def get_citations(self, paper_id: str) -> list:
         """Get citations of a paper.
 
@@ -60,6 +64,7 @@ class Client(object):
         papers = response.json()['data']
         return [paper['citingPaper'] for paper in papers]
 
+    @beartype
     def get_references(self, paper_id: str) -> list:
         """Get references of a paper.
 
