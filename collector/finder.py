@@ -42,18 +42,19 @@ def log_papers(func):
 class Finder(object):
     """Relevant paper finder class."""
 
-    def __init__(self, seed: str = None):
+    @beartype
+    def __init__(self, seeds: list[str] = None):
         """Initialize relevant paper finder.
 
         Args:
-            seed: The seed paper to start the search from.
+            seeds: The seed papers to start the search from.
         """
-        self.seed = seed
+        self.seeds = seeds
 
     def init(self):
         """Initialize relevant paper finder."""
         self.client = Client()
-        self.papers = [self.client.get_paper(self.seed)]
+        self.papers = [self.client.get_paper(seed) for seed in self.seeds]
 
     def fill_missing(self):
         """Fill missing data with defaults."""

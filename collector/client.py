@@ -1,6 +1,5 @@
 """API Client for semanticscholar."""
 
-import functools
 import http
 import time
 
@@ -9,6 +8,7 @@ from beartype import beartype
 
 from collector.console import console
 
+WAIT_SECS = 1.5
 DEFAULT_FIELDS = ','.join([
     'externalIds',
     'url',
@@ -17,7 +17,6 @@ DEFAULT_FIELDS = ','.join([
     'year',
     'authors',
 ])
-WAIT_SECS = 1.5
 
 
 class Client(object):

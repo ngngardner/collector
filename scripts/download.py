@@ -40,6 +40,10 @@ class Downloader(object):
 
     def convert(self):
         """Convert json input_file to txt file to be read by PyPaperBot."""
+        if self.doi_txt.exists():
+            console.log('Found {0}'.format(self.doi_txt))
+            return
+
         console.log('Converting {0} to {1}'.format(
             self.input_file,
             self.doi_txt,

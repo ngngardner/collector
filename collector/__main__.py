@@ -8,12 +8,17 @@ from collector.finder import Finder
 
 def main():
     """Run main function."""
-    doi = '10.1016/j.ins.2019.11.042'
+    seeds = [
+        '10.18653/v1/2021.findings-acl.353',
+        '10.18653/v1/D19-1627',
+        '10.18653/v1/D19-1357',
+        '10.24963/ijcai.2021/520',
+    ]
     year = 2015
-    keywords = ['color', 'texture']
-    depth = 3
+    keywords = ['definition']
+    depth = 2
 
-    fin = Finder(seed=doi)
+    fin = Finder(seeds=seeds)
     fin.init()
 
     for it in range(depth):

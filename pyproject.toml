@@ -13,6 +13,7 @@ beartype = "^0.9.0"
 requests = "^2.26.0"
 
 PyPaperBot = "^1.2.2"
+bibtexparser = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.7"
