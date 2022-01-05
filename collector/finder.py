@@ -17,7 +17,7 @@ def log_papers(func):
         func (function): Function to decorate.
 
     Returns:
-        function: Decorated function.
+        function: Decorated function call.
     """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -104,10 +104,17 @@ class Finder(object):
         res = []
         for paper in self.papers:
             console.log('Matching keywords in "{0}".'.format(paper['title']))
+
+            # match all keywords
+            founds = []
             for keyword in keywords:
                 if keyword in paper['title'] or keyword in paper['abstract']:
-                    res.append(paper)
-                    break
+                    founds.append(True)
+                else:
+                    founds.append(False)
+
+            if all(founds):
+                res.append(paper)
         self.papers = res
 
     @log_papers

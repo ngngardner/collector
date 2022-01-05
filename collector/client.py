@@ -1,6 +1,8 @@
 """API Client for semanticscholar."""
 
+import functools
 import http
+import time
 
 import requests
 from beartype import beartype
@@ -15,6 +17,7 @@ DEFAULT_FIELDS = ','.join([
     'year',
     'authors',
 ])
+WAIT_SECS = 1.5
 
 
 class Client(object):
@@ -40,6 +43,8 @@ class Client(object):
         Returns:
             dict: Paper object with requested fields.
         """
+        time.sleep(WAIT_SECS)
+
         url = '{0}/paper/{1}'.format(self.base_url, paper_id)
         response = requests.get(url, params={'fields': self.fields})
         return response.json()
@@ -54,6 +59,8 @@ class Client(object):
         Returns:
             list: List of citations.
         """
+        time.sleep(WAIT_SECS)
+
         url = '{0}/paper/{1}/citations'.format(self.base_url, paper_id)
         response = requests.get(url, params={'fields': self.fields})
 
@@ -74,6 +81,8 @@ class Client(object):
         Returns:
             list: List of references.
         """
+        time.sleep(WAIT_SECS)
+
         url = '{0}/paper/{1}/references'.format(self.base_url, paper_id)
         response = requests.get(url, params={'fields': self.fields})
 

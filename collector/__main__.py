@@ -9,8 +9,8 @@ from collector.finder import Finder
 def main():
     """Run main function."""
     doi = '10.1016/j.ins.2019.11.042'
-    year = 2010
-    keywords = ['color']
+    year = 2015
+    keywords = ['color', 'texture']
     depth = 3
 
     fin = Finder(seed=doi)
@@ -22,6 +22,7 @@ def main():
         fin.filter_year(year=year)
         fin.filter_keywords(keywords=keywords)
         fin.filter_duplicates()
+        fin.save_papers(Path.cwd() / 'output' / 'papers.json')
 
     fin.save_papers(Path.cwd() / 'output' / 'papers.json')
     console.log('Total papers: {0}'.format(len(fin.papers)))
