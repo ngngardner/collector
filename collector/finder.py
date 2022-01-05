@@ -145,3 +145,4 @@ class Finder(object):
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(str(path), 'w') as fout:
             json.dump(self.papers, fout, indent=4, sort_keys=True)
+        console.log('Wrote to "{0}"'.format(path))

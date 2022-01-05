@@ -1,6 +1,7 @@
 [flake8]
 max_methods = 8
 max_local_variables = 6
+max_expressions = 10
 ignore = [
     # string constant
     WPS226,
