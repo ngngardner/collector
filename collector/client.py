@@ -4,6 +4,7 @@ import http
 import time
 
 import requests
+import requests_cache
 from beartype import beartype
 
 from collector.console import console
@@ -17,6 +18,12 @@ DEFAULT_FIELDS = ','.join([
     'year',
     'authors',
 ])
+CACHE_EXPIRE = 180
+requests_cache.install_cache(
+    'semanticscholar',
+    backend='sqlite',
+    expire_after=CACHE_EXPIRE,
+)
 
 
 class Client(object):
